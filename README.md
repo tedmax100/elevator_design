@@ -30,7 +30,7 @@
 
 ```mermaid
   graph TD;
-      Close --> Opn;
+      Close --> Open;
       Close --> Move;
       Close --> Stop;
       Open --> Close;
