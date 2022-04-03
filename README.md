@@ -27,6 +27,18 @@
 | move                     | x    | x     | x    | o    |
 | stop                     | o    | x     | o    | x    |
 
+
+```mermaid
+  graph TD;
+      Close --> Opn;
+      Close --> Move;
+      Close --> Stop;
+      Open --> Close;
+      Move --> Stop;
+      Stop --> Open;
+      Stop --> Move;
+```
+
 When the elevator is moving, then it can stop.
 
 When the elevator is stopped, then it can open or move.
@@ -40,7 +52,7 @@ When the elevator is moving up from 2F to 6F, the passenger at 3F press UP, then
 
 When the elevator is moving up from 2F to 6F, the passenger at 3F press DOWN, then the elevator will not stop at 3F.
 
-When the elevator is moving up from 2F to 6F, the passenger at 1F press DOWN, then the elevator will not receive the external request.
+When the elevator is moving up from 2F to 6F, the passenger at 1F press DOWN, then the elevator will keep the request.
 
 
 
@@ -52,11 +64,3 @@ https://medium.com/double-pointer/system-design-interview-elevator-system-for-a-
 https://thinksoftware.medium.com/elevator-system-design-a-tricky-technical-interview-question-116f396f2b1c
 
 https://www.educative.io/courses/grokking-adv-system-design-intvw?affiliate_id=5457430901161984
-
-```mermaid
-  graph TD;
-      A-->B;
-      A-->C;
-      B-->D;
-      C-->D;
-```
