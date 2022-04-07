@@ -1,6 +1,7 @@
 # Design an Elevator System
 
 ## An elevator system design question
+設計一台電梯並加上單元測試
 
 ## Requirements
 每天上班都在搭乘電梯, 電梯有幾個動作
@@ -13,7 +14,22 @@
 
 請嘗試設計出電梯能合理的按照這些狀態來運行
 
-## Test Cases
+### Test Cases
 
 1. 驗證狀態
-如上述說明, 測試當電梯處於A狀態時, 進而執行B狀態是否正確能切換狀態
+如上述說明, 測試當電梯處於A狀態時, 進而執行B狀態是否正確能切換狀態.
+
+
+## 進階設計-1
+用戶搭乘電梯的動作, 通常是從電梯外部按上下按鈕(external_request), 以及在電梯內部按樓層(internal_request)與開關門按鈕.
+電梯運行時, 也有上下方向.
+能否設計出電梯, 能保存這些request, 並按照順序處理.
+
+### Test Cases
+
+1. 驗證運行路徑
+如上述說明, 給定多筆有順序的requests, 檢查電梯執行順序與結果符合這些requests的預期.
+
+ex : 
+inputs : [{UP, 1, 5}, {UP, 2, 3}, {DOWN, 3, 2}]
+output : 電梯前進順序　：　1 -> 5 -> 2 -> 3 -> 3 -> 2
