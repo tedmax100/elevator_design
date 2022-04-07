@@ -3,34 +3,17 @@
 ## An elevator system design question
 
 ## Requirements
+每天上班都在搭乘電梯, 電梯有幾個動作
+電梯不外乎就```開門, 關門, 運行, 停止```
+但這些動作間其實每個動作之前ㄉ有些前置條件
+1. 開門/敞開 : 從電梯外按了上下樓按鈕後, 電梯門打開到關上的時間, 這段時間就是敞開狀態, 這狀態下能做的動作也只能是關門.
+2. 關門 : 電梯門關閉了, 在這狀態下能做的動作有, 開門(不想搭乘電梯了), 停止/idle (忘記從電梯內按下樓層按鈕), 運行(向上或向下)
+3. 運行中 : 電梯正在上下前進時, 能做的也只有stop停止(停電或到達樓層)
+4. 停止/IDLE : 電梯停止不動, 在這狀態下, 電梯只能夠上下前進(別樓層有人從電梯外按上下按鈕)或是開門(該樓層有人按上下按鈕)
 
-1. An elevator can open, close, move, stop
-2. Elevator door can only open when it is stop in a floor (i.e. not moving)
-3. An elevator can transfer passengers from one floor to another floor
-
-### Additional requirements
-
-1. Two control directions
-   1. external request; this request will be having the direction(move up/down) and the floor on which the button has been press by the user i.e. source floor. The elevator will check the available requests if any and then process this request depending on some priority. The elevator reaches the source floor.
-   2. internal request; the passenger press 5th floor button in the elevator to indicate the elevator to go to 5th-floor. When reaching the target floor and the elevator stopped the passenger then exits the elavator.
-2. If suppose when the elevator is moving from the 1st-floor to the 5th floor and it reaches the 2nd-floor. At this moment, another person on the 2nd-floor want's to go in the UP direction. Then the elevator will stop for this request.
-3. If suppose when the elevator is moving from 1st-floor to the 5th-fllor and it reaches the 2nd-floor. At this moment another person on the 2nd-floor want's to go in the DOWN direction. Then the elevator will not stop for this request.
+請嘗試設計出電梯能合理的按照這些狀態來運行
 
 ## Test Cases
 
-1. Assertion state  
-
-   - When the elevator is moving, then it can stop.
-
-   - When the elevator is stopped, then it can open or move.
-
-   - When the elevator is opened, then it can close.
-
-   - When the elevator is closed, then it can open/move/stop.
-
-2. Assertion direction
-   - When the elevator is moving up from 2F to 6F, the passenger at 3F press UP, then the elevator will stop at 3F.
-
-   - When the elevator is moving up from 2F to 6F, the passenger at 3F press DOWN, then the elevator will not stop at 3F.
-
-   - When the elevator is moving up from 2F to 6F, the passenger at 1F press DOWN, then the elevator will keep the request.
+1. 驗證狀態
+如上述說明, 測試當電梯處於A狀態時, 進而執行B狀態是否正確能切換狀態
